@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])) {
+  header("Location: login.php");
+  exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,18 +21,15 @@
 
 <body class="bg-light">
 
-  <?php include 'includes/nav.php'; ?>
-  <?php include 'config/db.php'; ?>
+<?php
+include 'includes/nav.php';
+include 'config/db.php';
+?>
+ 
 
   <?php
 
-  session_start();
-
-if(!isset($_SESSION['user_id'])) {
-  header("Location: login.php");
-  exit;
-}
-
+  
   $sqlState = $pdo->query("
     SELECT 
         courses.*,

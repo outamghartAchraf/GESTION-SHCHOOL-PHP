@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])) {
+  header("Location: login.php");
+  exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +24,6 @@
 <?php include 'config/db.php'; ?>
 
 <?php  
-
-session_start();
-
-if(!isset($_SESSION['user_id'])) {
-  header("Location: login.php");
-  exit;
-}
 
 $sqlState = $pdo->query("SELECT * FROM classes");
 $classes = $sqlState->fetchAll(PDO::FETCH_OBJ);
